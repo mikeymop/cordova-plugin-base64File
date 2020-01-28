@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        id="com.spatialdatalogic.base64File"
+        version="0.7.0">
+
+  <name>Base64File</name>
+
+  <engines>
+    <engine name="cordova" version=">=3.4.0"/>
+  </engines>
+
+  <asset src="www/base64File.js" target="js/base64File.js"/>
+
+  <js-module src="www/base64File.js" name="base64File">
+    <clobbers target="base64File" />
+  </js-module>
+
+  <platform name="android">
+
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="Base64File">
+        <param name="android-package" value="com.spatialdatalogic.plugin.Base64File"/>
+      </feature>
+    </config-file>
+    <config-file target="AndroidManifest.xml" parent="/*">
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    </config-file>
+
+    <source-file src="src/android/Base64File.java" target-dir="src/com/spatialdatalogic/plugin/"/>
+  </platform>
+
+  <platform name="ios">
+    
+    <config-file target="config.xml" parent="/widget">
+      <feature name="Base64File">
+        <param name="ios-package" value="HWPBase64File" />
+      </feature>
+    </config-file>
+    <config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
+          <array>
+              <string>googlechromes</string>
+              <string>comgooglemaps</string>
+          </array>
+    </config-file>
+    <header-file src="src/ios/HWPBase64File.h" target-dir="Base64FilePlugin"/>
+    <source-file src="src/ios/HWPBase64File.m" target-dir="Base64FilePlugin"/>
+  </platform>
+
+
+
+</plugin>
